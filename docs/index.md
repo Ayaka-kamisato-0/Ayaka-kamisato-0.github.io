@@ -53,7 +53,7 @@ ZJU的转专业政策整体相对自由，没有强制要求原专业前百分�
 上述文件中的绩点只是基本要求，专业竞争越激烈绩点要求越高，所以要量力而行。老师主要看*硬课绩点*（微积分，线性代数，C语言程序设计与实验，工图等，如果是后面三次转专业应该还包含专业课）。po是4.8+转的，如果你想冲最热门的几个专业那最好硬课全满绩或接近满绩，比较热门的保证硬课4.5+。
 
 3.面试：
-考察你对专业的认识与了解。但更重要的是你之前的经历（比如学科竞赛）----我有个工试同学4.8+接近专业第一的绩点转计科没成，不是不够高而是老师似乎只青睐竞赛生……当然我了解到的好像也只是计科这么干，其他专业绩点的权重还是很大的，至于专业知识嘛其实都是可以速成的，尽量给老师留下一个好印象。
+考察你对专业的认识与了解。但更重要的是你之前的经历（比如学科竞赛），至于专业知识嘛其实都是可以速成的，总之尽量给老师留下一个好印象。
 
 ### 策略：我应该转专业吗？
 
@@ -87,4 +87,73 @@ jk是不错的专业，也是zju的热门专业，但是学业压力与竞争压
 
 
 
+# 计算机学科素养速成课程
+
+## 压缩
+1.有损压缩：一般用于人类感知相关的信息，如图片，音频。正是因为压缩导致电话里的声音与正常的人声有所区别
+
++合并bit块：不合并例如raw格式，会比JPEG更大
+
++视频：仅储存变化，用色块的简单运动来描述变化，但是当压缩过度时会出现错误
+
++去除超声波：人耳无法感知的声音信号
+
+2.无损压缩：
+
++图片：
+
+游程压缩，通过标记byte数量实现压缩，但有可能压缩后反而变大（图片信息碎片化）
+
+DFTBA：将图片信息整合成更大的块并对块进行编码，注意传输数据时需要将编码与块的对应信息一并传递
+
+## 文件系统
+### 目录文件：储存文件信息的文件，而一般文件只是储存数据。
+
+including: name, creation time, time of last modification,owner,type(read/write), address
+
+fragmentation/defragmentation;
+
+hierarchical file system:still used today
+
+### 懒惰删除：删除时并没有真正擦除该位置的文件，只是在目录中删去了文件信息并且在下次写入时可以更改该位置的信息，正因如此某些已经彻底删除的文件仍有可能从电脑中恢复。
+
+## storage
+
+### hard disk drive 
+
+read and write from magnetic tape
+
+### memory hierarchy
+
+cpu register
+
+cpu cache
+
+rom
+
+flash/usb memory
+
+hard drives
+
+## OS 
+
+core functionality:kernal  ----in charge of memory management/ I/O control / multitasking
+
+### kernal protection
+
+once collapsed, you can restart to make it back to normal
+
+### dynamic memroy allocation
+
+virtual rom
+
+### memory protection
+
+## IC
+
+### PCB
+
+standardized,easy to produce in large scale,helping to connect different parts of computers
+
+### production
 
