@@ -130,13 +130,15 @@ hierarchical file system:still used today
 
 read and write from magnetic tape
 
+not volatile
+
 #### memory hierarchy
 
 cpu register
 
-cpu cache
+cpu cache:import a block of instructions from ram at a time/not committing changes to ram immediately->dirty bits sync
 
-rom
+ram
 
 flash/usb memory
 
@@ -154,15 +156,25 @@ once collapsed, you can restart to make it back to normal
 
 virtual rom
 
+assume that the storage space is consistent in computers
+
 #### memory protection
 
+information of different applications is assigned to different parts to prevent interferences
+
 ### IC
+
+from vaccum tubes to transistors
 
 #### PCB
 
 standardized,easy to produce in large scale,helping to connect different parts of computers
 
 #### production
+
+pure sillicon slices,covered by oxide and then covered by a kind of material that will resolve once exposed to light.
+
+steam penetration
 
 ### Command line interfaces 
 easy to access computers that are faraway
@@ -175,6 +187,8 @@ meet the needs of human-computer interaction
 
 the computers equipped with interactive functions are primitive terminals
 
+defect: not intuitive
+
 ### display
 
 two ways to generate pictures: vector scaning and raster scaning 
@@ -185,7 +199,13 @@ the hardpiece which in chargr of transforming from numbers to characters is the 
 
 ### development of cs during the cold war
 
+the governments paved the way for the development of PC during the cold war
 
+#### development of personal computers
+
+IBM compatible
+
+electronic devices for consumers
 
 ### 3D grahics
 #### principle
@@ -321,6 +341,7 @@ e.g result :A^x mod B:A,B can be public and the result might be leaked but still
 private key is private.public key is public
 
 digital signature is based on it
+![signature](images/数字签名.png)
 
 ### ML/CV/NLP
 
