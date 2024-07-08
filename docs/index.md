@@ -364,7 +364,7 @@ CV: now using CNN
 
 
 
-## **A new chapter:CS61A learning** 
+## **新章节：python学习之CS61A** 
 
 ### **basic knowledge**
 
