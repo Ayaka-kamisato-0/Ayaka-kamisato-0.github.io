@@ -89,6 +89,12 @@ jk是不错的专业，也是zju的热门专业，但是学业压力与竞争压
 
 
 
+
+
+
+
+
+
 ## **计算机学科素养速成课程**
 
 ### compression
@@ -350,8 +356,118 @@ ML is different from AI, it is one foundation of AI.Machines learn by getting cl
 CV: now using CNN
 
 
+![attachment](images/cs风.png)
 
 
+
+
+
+
+
+## **A new chapter:CS61A learning** 
+
+### **basic knowledge**
+
++very demanding on format:python uses indentation to distinguish between different code-blocks
+
++object-oriented
+
++for normal statements,execute it immediately;for functions,store the body waiting to be called
+
+#### terminology
+
++interpreter:different from compiler,it can execute your code while you are writing,while still you can first write it in your text editor then run it just like C
+
+frame
+
+#### operations
+
++import lib functions
+
+1.
+```python
+import math
+math.sqrt(4)
+```
+
+2.
+```python
+from math import sqrt
+sqrt(4)
+```
+
+
+three different ways to do the division: /,//,%   */ will transform the operand into float automatically,even if the result is an integer*
+
+
+
+#### format
+
+no need to declare the variable before using it
+
+
+
+
+
+function:
+```python
+def hailstone(digit,num):
+    if digit==1:
+        print(digit)
+        print('the number of steps is:',num)
+        return num
+    if digit%2==0:
+        print(digit)
+        hailstone(int(digit/2),num+1)
+    if digit%2==1:
+        print(digit)
+        hailstone(digit*3+1,num+1)
+    return None
+```
+
+
+
+
+
+##### input/output
+
+
+
+
+
+```python
+a,b=input().split()   #inputs are all treated as strings,*.split()* helps to divide the inputs,w
+print('%s %s'%(a,b))  #no comma in between
+```
+
+
+
+
+
++all inputs are perceived as strings(),so transformation is needed.
+
+*however when we define a function we don't necessarily need to label the input type,rather it is when we call the function that we need to declare its type*
+
+
+
+
+
+```python
+a,b=map(lambda x:int (x),input('input your data').split()) #format:(the func you choose,input)
+```
+
+
+
+
+
++for outputs,we can choose one format to output(similar to C except ',')
+
+### basic functions
+
+**many libs provide plenty of functions,which is a great advantage of python**
+
+
+### **data structure**
 
 
 
