@@ -201,7 +201,7 @@ two ways to generate pictures: vector scaning and raster scaning
 
 bit maps are not the original way of representing pictures since they take up much space
 
-the hardpiece which in chargr of transforming from numbers to characters is the original form of GPU
+the hardpiece which is in charge of transforming from numbers to characters is the original form of GPU
 
 ### development of cs during the cold war
 
@@ -476,10 +476,76 @@ a,b=map(lambda x:int (x),input('input your data').split()) #format:(the func you
 
 
 
+## **新章节：web dev之CS571**
 
+### CHAPTER 1：intro
 
+basic web technologies:
 
+-HTML:structure
 
+-CSS:decoration
 
+-JS:interaction
 
+.json: a kind of data structure(not abstract,like txt for example)
 
+widely used to transmit data, since it is easy to get across to both humans and computers
+
+```json
+{
+    "name":{
+        "first":"xxx",
+        "last":"xxx"
+    },
+    "gender":"armed helicopter",
+    "age":19,
+    "num":[35,31,23]
+}
+```
+
+the job of browsers are merely sending the requests and receiving data and then rendering it
+
+### format
+#### html
+```html
+<html>
+    <head><br>
+    <br>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p><br>
+        <ol>
+            <li><strong></strong></li>
+        </ol>
+        <select>
+            <option></option>
+            <option></option>
+        </select>
+    </body>
+</html>
+```
++differentiate between <link > and <a href="https://zju.edu.cn">welcome to zju</a>
+
+#### CSS
+
+three ways to use CSS:
+
+1.inline
+
+2.internal
+
+3.external
