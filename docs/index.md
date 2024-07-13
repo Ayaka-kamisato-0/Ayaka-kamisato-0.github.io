@@ -540,7 +540,7 @@ the job of browsers are merely sending the requests and receiving data and then 
 ```
 +differentiate between <link > and <a href="https://zju.edu.cn">welcome to zju</a>
 
-#### CSS
+#### CSS&Javascript
 
 three ways to use CSS:
 
@@ -549,3 +549,70 @@ three ways to use CSS:
 2.internal
 
 3.external
+
+and the same principle applies to Javascript
+
+operations:
+
+CSS:
+
+- in <head>
+```html
+<link rel="stylesheet" href="style.css">
+```
+
+- in .css
+```javascript
+.td{
+    color:firebrick;
+    font weight:300;
+}
+```
+
+html:
+
+- use document to reference DOM
+
+document.getElementById/……
+
+operations:
+
+key word :this     
+
+eg.
+
+
+
+```html
+<button onclick="name(this)" id="btn1">press to continue</button>
+```
+
+```javascript
+function name(target){
+    const con=document.getElementByTagName().value;
+    alert(target);
+    window.location.href=con;
+}
+```
+
+#### Conversions between JS object and JSON
+
+##### the slight difference in syntax
+
+comments are not allowed in JSON
+
+key value pairs must be in "" in JSON
+
+#### other features
+
+web programming is all about data
+
+data can only be transferred in the form of text,therefore----
+
+JSON.parse (objects are stored in heap,the variable for an object is actually a pointer)
+
+JSON.stringify
+
+if a variable is a const: it can not be reassigned yet its property can be reassigned
+
+**ATTENTION: Since the variable type is hidden here in JS,we should be extra cautious when it comes to variable assignment**
