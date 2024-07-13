@@ -2,7 +2,7 @@ site_name: Ayaka
 site_url: https://Ayaka-kamisato-0.github.io/
 theme:
   name: material
-  favicon: images/
+  favicon: docs/images/genshin.png
 
 
   palette: 
