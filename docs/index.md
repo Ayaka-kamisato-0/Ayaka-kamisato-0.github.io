@@ -469,6 +469,392 @@ a,b=map(lambda x:int (x),input('input your data').split()) #format:(the func you
 
 ### **data structure**
 
+|类型   |有序性    |可变性    |允许重复  |允许不同类型    |
+|------|----------|----------|----------|---------------|
+|列表  |有序       |可变      |允许      |允许           |
+|元组  |有序       |不可      |允许      |允许           |
+|集合  |无序       |可变      |不允许    |允许（必须不变元素） |
+|字典  |无序       |可变      |不允许    |允许（值不同类）|
+
+#### **operation on containers**
+
+##### slicing
+
+[x for x in range(10) if x % 3 == 0]
+
+{2*x: x for x in c}
+
+list()
+
+##### sum/max/all
+
+=>they all need parameter to be iterable
+
+sum: sum([1,2,3],4)/sum([[1,2,3],[4,5]],[])
+
+max: max(range(10),key=lambda x: 7-(x-5)(x-7))
+
+attention: range() returns a list of integers
+
+all: resembles 'and' logic in function
+
+
+##### strings
+
+A kind of abstraction
+
+strings are a type of sequence
+
+abstraction
+
+#### **Tree**
+
+##### basic operations:
+
+![demo](images/image.png)
+
+
+#### **Data abstraction**
+
+conceal the data and corresponding operations so as to simplify complexity
+
+do not violate abstraction barriers
+
+```python
+class Account:
+    def __init__(self, balance):
+        self.__balance = balance  # 使用双下划线隐藏属性
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def withdraw(self, amount):
+        if amount <= self.__balance:
+            self.__balance -= amount
+            return amount
+        else:
+            raise ValueError("Insufficient funds")
+
+    def get_balance(self):
+        return self.__balance
+
+
+account = Account(100)
+print(account.get_balance())  # 正确使用接口获取余额
+
+# 违反抽象屏障，直接修改隐藏属性
+account._Account__balance = 1000
+print(account.get_balance())  # 输出: 1000
+
+```
+#### **Mutability**
+
+encoding:
+
+unicode(contains ascii,a total of 109000 objects)->utf-8 
+
+the length of the encoding of unicode object vary from 1 to 4 
+
+operations:
+
+```python
+from unicodedata import name,lookup
+lookup('SNOWMAN')
+name('A')
+lookup('WHITE SMILE FACE').encode()
+'A'.encode
+```
+
+##### **Mutation**
+
+two objects are the same / equal(one thing)
+
+两变量指向同一个对象，两个变量等价，变化同步
+
+两个变量指向不同对象但是对象的值相同，两个变量相等，但变化不同步
+
+python中传参基于变量的引用而不是变量的复制，对于不可变对象（整数，浮点，字符串），更改将会创建新的对象；对于可变对象修改会传递到函数外部
+
+元组不可变，但其元素可以为可变对象，可以改变可变对象的值
+
+字典的键必须为可哈希的（即不可变的），否则改变键会使得值不可查询，所以如果键为含有可变对象的元组依然非法
+
+**辨析**：引用赋值，浅拷贝（拷贝结构，元素本身仍然是引用）与深拷贝（完全拷贝）
+
+变量指向对象，是否变化的关键取决于对象是否可变
+
+###### **Mutable Function**
+
+default argument value: 默认参数必须在非默认参数之后，在默认参数值在函数定义时计算一次，并且在后续的函数调用中使用相同的对象。这意味着如果默认值是一个可变对象（例如列表、字典或自定义对象），并且在函数内部修改了该对象，那么后续的函数调用将共享该修改后的对象。这通常会导致意想不到的行为。
+
+解决方法：使用'None'作为默认值
+
+
+### **Partitions**
+
+partition
+```python
+def list_partitions(n,m):
+    if n<0 or m == 0:
+        return []
+    else:
+        exact = []
+        if m == n:
+            exact = [[m]]
+        with_m = [[m]+p for p in list_partitions(n-m, m)]
+        without_m = list_partitions(n, m-1)
+        return exact +with_m +without_m 
+
+
+def list_partitions(n,m):
+    if n<0 or m == 0:
+        return []
+    else:
+        exact = []
+        if m == n:
+            exact = [str(m)]
+        with_m = [str(m)+'+'+p for p in list_partitions(n-m, m)]
+        without_m = list_partitions(n, m-1)
+        return exact +with_m +without_m 
+```
+
+### **iterators and generators**
+
+#### 可迭代对象和迭代器对象
+
+迭代器（iterator）： iter（）或者 call function that returns a generator 
+
+一次性，可用next进行调用，也可用list一次性完成输出
+
+yield 和 yield from（多个）
+
+可迭代对象（iterable）：可以转化为迭代器的对象
+
+实例：
+```python
+def list_max(n,m):
+    match = 0
+    if n<0 or m == 0:
+        return 0
+    elif n == m:
+        match = 1
+    a = list_max(n-m,m)
+    b = list_max(n,m-1)
+    return a + b + match
+
+ver2:
+
+def printlist(n,m):
+    if n < 0 or m == 0:
+        return []
+    else:
+        a = [ str(m) + p for p in printlist(n-m,m)]
+        b = [q for q in printlist(n,m-1)]
+    return  a + b
+
+
+def printlist(n,m):
+    match = []
+    if n < 0 or m == 0:
+        return []
+    elif n == m:
+        match = [[str(m)]]
+    a = [p + [str(m)] for p in printlist(n-m,m)]
+    b = [q for q in printlist(n,m-1)]
+    return match + a + b
+
+def printlist_v2(n,m):
+    if n>=0 and m != 0:
+        if n == m:
+            yield [str(m)]
+        for p in printlist_v2(n-m,m):
+            yield [str(m)]+ p
+        yield from printlist_v2(n,m-1)
+```
+#### **zip 函数**
+
+bind elements in different iterables 
+
+return an iterator
+
+#### dictionary iterators
+
+d.keys()   d.values()
+
+### **Efficiency**
+
+similar to that in C
+
+compute efficiency:both time and space
+```python
+
+def count_calls(f):
+    def counted(n):
+        counted.countnum += 1
+        return f(n)
+    counted.countnum == 0
+    return counted
+
+def fib(n):
+    if n == 0 or n == 1:
+        return n
+    else:
+        return fib(n-1) + fib(n-2)
+
+def count_frames(f):
+    def counted(n):
+        counted.countnum += 1
+        if counted.max < counted.countnum:
+            counted.max = counted.countnum
+        result = f(n)
+        counted.countnum -= 1
+        return result
+    counted.max = 0
+    counted.countnum = 0
+    return counted
+```
+#### **Memoization**
+
+reduce time complexity at the cost of increasing space complexity
+
+Memo version of fib :
+```python
+def func_memo(f):
+    cache = {}
+    def func(n):
+        if n not in cache:
+            cache[n] = f(n)
+        return cache[n]
+    return func
+```
+
+使用一个空的大括号定义会得到一个新的字典而非集合
+
+集合不可下标
+
+empty_set = set() 定义空集合
+
+
+### **object and inheritance**
+
+```python
+class A:
+    z = -1
+    def f(self,x):
+        return B(x-1)
+
+class B(A):
+    n = 4
+    def __init__(self,y):
+        if y:
+            self.z = self.f(y)
+        else:
+            self.z = C(y+1)
+
+class C(B):
+    def f(self,x):
+        return x
+
+a = A()
+
+b = B(1)
+
+b.n = 5
+
+b.z.z.z = 1
+```
+each time you call A,B or C a new object is created
+
+b : B(1)
+
+b.z = self.f(y)-->B(0)
+
+b.z.z = B(0).z-->C(1)
+
+b.z.z.z = C(1).z-->__init__(self,1)-->self.f(1)-->1
+
+b.z.z.z.z = 1.z-->error
+
+#### **method**
+```python
+class cls:
+    def __init__(self):
+        return 0
+    def func1(cls):
+        return 1
+    def func2(self,param1):
+        return 2
+    def _func2(self):
+        return 3
+    def __func2(self):
+        return 4
+    def __func2__(self):
+        return 5
+```
+
+单下划线：下划线作为习惯性的格式
+
+前双下划线：调用时格式obj._classname__func2()
+
+前后双下划线：special method，由系统自动调用而不需要手动触发（例如实例化eg = class）
+
+obj.func()中onj实例本身就充当一个参数
+
+##### **strings**
+
+```python
+print(f'welcome to {str1} {str2}')
+
+print('welcome to {str1} {str2}'.format('my','world'))
+```
+
+string interpolation : evaluate a string literal that contains expression
+
+##### **inheritance and attribute lookup**
+
+subclass is a special form of base class
+
+inheritance is a one way road
+
+![inheritance](images/inheritance.png)
+
+**mulltiple inheritance**
+
+class C(A,B,D):
+
+##### class statements
+
+here class resembles struct datatype in C
+
+```python
+class Bank():
+    Bank.interest = 0.03
+    accounts = {}
+    def open_account(name,password,money):
+        if name in accounts and accounts[name].password == password:
+            print('already exists')
+        else:
+            account = Account(name,password,money)
+            accounts.setdefault('name',account)
+    def log_in():
+        if 
+class Account(Bank):
+    def __init__(self,money,type)
+
+class Tree():
+    def __init__(self,val,rest=[]):
+        self.value = value
+        self.rest = rest
+
+```
+
+辨析：inheritance and composition：
+
+inheritance:base-->sub
+
+composition:contain-->contained
+
+repr & str:the former one is formatted,using python description
 
 
 
@@ -616,3 +1002,71 @@ JSON.stringify
 if a variable is a const: it can not be reassigned yet its property can be reassigned
 
 **ATTENTION: Since the variable type is hidden here in JS,we should be extra cautious when it comes to variable assignment**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## **新章节：短学期之大数据可视化**
+
+### Data workflow
+
+data platform->storage->acquision->
+
+### profiling
+
+#### data overview
+
+data schema
+
+data quality
+
+domain
+
+
+
+### wrangling
+
+sorting
+
+filter
+
+distinct:remove duplicate objects
+
+slice
+
+extract
+
+mutate
+
+replace
+
+split
+
+merge
+
+aggregate
+
+reshape
+
+join
+
+### modeling
+
+m
+
+
+
+[def]: images
