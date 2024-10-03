@@ -4,6 +4,9 @@ theme:
   name: material
   favicon: images/genshin.png
 
+  nav:
+  - Home: index.md
+  - Download the app: downloads/app.rar
 
   palette: 
 

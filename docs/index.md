@@ -1,5 +1,9 @@
 # **My page**
 
+## click here to download
+[Download the app](downloads/app.rar)
+
+
 大一一些琐碎的生活切片以及自己的一些想法
 
 不定期掉落一些碎碎念
